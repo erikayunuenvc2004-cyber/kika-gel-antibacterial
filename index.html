@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El Misterio del Gel Antibacterial · Kika</title>
+<meta name="description" content="Laboratorio interactivo de Kika: la historia de Lupe, la ciencia del gel antibacterial y juegos. Creado por Yunuen Calderón · UTM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap">
+<style>
+/* Paper-notebook look: grid paper, ink outlines, comic titles. One deliberate light theme. */
+:root{--paper:#FBF8FB;--grid:#EEE6F0;--ink:#36101A;--wine:#8C3D55;--yellow:#FFD84A;--pink:#FF8AD8;--blue:#7FD3FF;--mint:#74E0A6;--red:#FF7A6E;--white:#fff;color-scheme:light}
+*{box-sizing:border-box}
+html,body{background:var(--paper);color:var(--ink)}
+body{margin:0;font-family:Poppins,system-ui,sans-serif;background-image:linear-gradient(var(--grid) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--grid) 1.5px,transparent 1.5px);background-size:40px 40px;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:120px}
+img{max-width:100%;display:block}
+.wrap{max-width:1100px;margin:0 auto}
+.comic{font-weight:800;color:var(--yellow);-webkit-text-stroke:8px var(--ink);paint-order:stroke fill;text-shadow:4px 5px 0 var(--ink);line-height:1.05;letter-spacing:.3px;margin:0;text-wrap:balance}
+.comic.p{color:var(--pink)}.comic.b{color:var(--blue)}.comic.g{color:var(--mint)}.comic.w{color:#fff}
+.card{background:#fff;border:4px solid var(--ink);border-radius:22px 28px 20px 30px/28px 20px 30px 22px;box-shadow:7px 8px 0 var(--ink);padding:22px}
+.btn{text-decoration:none;font:700 20px/1.1 Poppins,sans-serif;color:var(--ink);background:#fff;border:4px solid var(--ink);border-radius:999px;box-shadow:4px 5px 0 var(--ink);padding:12px 22px;cursor:pointer;transition:transform .1s,box-shadow .1s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 7px 0 var(--ink)}
+.btn:active{transform:translate(3px,4px);box-shadow:1px 1px 0 var(--ink)}
+.btn:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+.btn.y{background:var(--yellow)}.btn.p{background:var(--pink)}.btn.b{background:var(--blue)}.btn.g{background:var(--mint)}
+.btn[disabled]{opacity:.5;cursor:default}
+.tag{display:inline-block;background:var(--yellow);border:4px solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;transform:rotate(-2deg)}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:center;padding-block:28px 10px}
+header.hero h1{font-size:clamp(40px,6.4vw,74px)}
+header.hero p{font-size:18px;font-weight:600;margin:14px 0 0}
+.kikahero{width:100%;max-width:420px;animation:bob 2.6s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translateY(-6px) rotate(-2deg)}to{transform:translateY(6px) rotate(2deg)}}
+.video{margin-top:22px;padding:12px}
+.video video{width:100%;border-radius:12px;border:3px solid var(--ink);background:#000}
+nav.mis{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+section{margin-top:56px}
+section h2{font-size:clamp(32px,4.6vw,50px);margin-top:10px}
+.lead{font-size:18px;font-weight:600;max-width:65ch}
+.row{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;align-items:start}
+.pol{background:#fff;border:3px solid var(--ink);padding:10px 10px 46px;box-shadow:6px 8px 0 var(--ink);position:relative;width:230px;transition:transform .3s}
+.pol:nth-child(odd){transform:rotate(-3deg)}.pol:nth-child(even){transform:rotate(3deg)}
+.pol:hover{transform:rotate(0) scale(1.04)}
+.pol span{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-weight:700}
+.pol::before{content:"";position:absolute;width:90px;height:26px;background:rgba(255,216,74,.85);left:50%;top:-14px;transform:translateX(-50%) rotate(-4deg)}
+.story{display:grid;gap:12px}
+.story .step{display:flex;gap:14px;align-items:center;font-weight:600;font-size:18px;opacity:.35;transition:opacity .3s}
+.story .step.on{opacity:1}
+.story .step img{width:84px;flex:none}
+.big{font-size:clamp(60px,10vw,120px);font-weight:800;line-height:1}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.choice button{font:800 clamp(44px,8vw,90px)/1 Poppins,sans-serif;padding:34px 10px;border:4px solid var(--ink);border-radius:26px;box-shadow:7px 8px 0 var(--ink);cursor:pointer;color:var(--ink);position:relative}
+.choice button:nth-child(1){background:#FFE3DF}.choice button:nth-child(2){background:#E0F6FF}
+.choice button .mark{position:absolute;right:12px;top:6px;font-size:64px}
+.fb{min-height:56px;font-weight:700;font-size:20px;margin-top:16px}
+.rub{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+.ring{width:220px;height:220px}
+.ring circle{fill:none;stroke-width:16}
+.stepname{font-size:clamp(34px,5vw,56px)}
+.gloves{width:min(300px,70%);margin:12px auto}
+.gloves.go{animation:rub .18s ease-in-out infinite alternate}
+@keyframes rub{from{transform:translateX(-14px) rotate(-3deg)}to{transform:translateX(14px) rotate(3deg)}}
+.dots{display:flex;gap:10px;justify-content:center}
+.dots i{width:24px;height:24px;border-radius:50%;border:4px solid var(--ink);background:#fff}
+.dots i.on{background:var(--mint)}
+.kitchen{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center}
+.ingr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ingr button{background:#fff;border:4px solid var(--ink);border-radius:20px;box-shadow:5px 6px 0 var(--ink);padding:10px;cursor:pointer;font:700 17px Poppins,sans-serif;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:6px}
+.ingr button img{height:90px;width:auto;object-fit:contain}
+.ingr button.used{opacity:.35;transform:scale(.95)}
+.pot{position:relative;max-width:360px;margin:0 auto}
+.pot .level{position:absolute;left:22%;right:22%;bottom:30%;height:0;background:repeating-linear-gradient(35deg,#BDE9FF 0 8px,#E0F6FF 8px 16px);border-radius:0 0 40px 40px;transition:height .6s cubic-bezier(.4,1.6,.5,1);z-index:-1}
+.pot.jig{animation:jig .7s}
+@keyframes jig{25%{transform:scale(1.06,.94)}50%{transform:scale(.96,1.05)}75%{transform:scale(1.02,.98)}}
+.recipe{counter-reset:r;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.recipe span{border:3px solid var(--ink);border-radius:999px;padding:4px 12px;font-weight:700;background:#fff}
+.recipe span.ok{background:var(--mint)}
+.game{display:grid;grid-template-columns:1fr;gap:18px;justify-items:center}
+.statement{font-size:clamp(24px,3.4vw,36px);font-weight:800;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+.sk{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
+.sk button{background:#fff;border:4px solid var(--ink);border-radius:26px;box-shadow:6px 7px 0 var(--ink);padding:14px 26px;cursor:pointer;display:flex;flex-direction:column;align-items:center;font:800 24px Poppins,sans-serif;color:var(--ink);transition:transform .15s}
+.sk button img{width:150px;height:150px;object-fit:contain}
+.sk button.ok{background:#D6F7E5;transform:scale(1.06)}.sk button.bad{background:#FFE0DC}
+.board{position:relative;min-height:360px;display:flex;align-items:center;justify-content:center}
+.board .bottle{width:200px}
+.sticker{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:6px 12px;font-weight:700;box-shadow:3px 4px 0 var(--ink);animation:pop .5s cubic-bezier(.3,1.7,.5,1);max-width:200px;text-align:center}
+@keyframes pop{from{transform:scale(0)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+form.idea{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+form.idea input{flex:1 1 200px;min-width:0;font:600 18px Poppins,sans-serif;padding:12px 16px;border:4px solid var(--ink);border-radius:16px;color:var(--ink);background:#fff}
+#kika{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(10px,env(safe-area-inset-bottom));width:150px;z-index:20;pointer-events:none;transform-origin:50% 90%;transition:transform .2s}
+#kika.talk{animation:talk .3s ease-in-out infinite alternate}
+@keyframes talk{from{transform:rotate(-3deg) scale(1.02)}to{transform:rotate(3deg) scale(.98,1.04)}}
+#bubble{position:fixed;right:max(150px,calc(env(safe-area-inset-right) + 150px));bottom:90px;z-index:21;max-width:min(420px,calc(100vw - 190px));background:#fff;border:4px solid var(--ink);border-radius:18px;padding:10px 16px;font-weight:600;box-shadow:4px 5px 0 var(--ink);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}
+#bubble.on{opacity:1;transform:none}
+footer{margin-top:70px;text-align:center;font-weight:600}
+footer b{background:linear-gradient(transparent 50%,var(--yellow) 50%)}
+.score{font-weight:800;color:var(--wine)}
+@media (max-width:720px){header.hero,.kitchen,.rub{grid-template-columns:1fr}.kikahero{max-width:260px;margin:0 auto}#kika{width:96px}#bubble{right:110px;bottom:60px;max-width:calc(100vw - 130px);font-size:14px}.ring{width:170px;height:170px;margin:0 auto}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <div>
+    <span class="tag">Laboratorio de Kika · UTM</span>
+    <h1 class="comic" style="margin-top:14px">El Misterio del <span class="p" style="color:var(--pink)">Gel Antibacterial</span></h1>
+    <p>Mira el video, escucha la historia de Lupe y juega para convertirte en detective científic@.</p>
+    <nav class="mis" aria-label="Misiones">
+      <a class="btn y" href="#lupe">1 · Lupe</a><a class="btn b" href="#reto">2 · ¿100 o 70?</a><a class="btn g" href="#frota">3 · Frota</a><a class="btn p" href="#cocina">4 · Cocina</a><a class="btn y" href="#escudo">5 · Escudo</a><a class="btn b" href="#idea">6 · Tu idea</a>
+    </nav>
+  </div>
+  <img class="kikahero" src="art/kika.png" alt="Kika, la urraca detective con bata de laboratorio">
+</header>
+
+<div class="card video">
+  <video controls preload="metadata" poster="video/poster.jpg" src="video/kika-gel.mp4"></video>
+</div>
+
+<section id="lupe">
+  <span class="tag">Misión 1</span>
+  <h2 class="comic">La historia de Lupe</h2>
+  <p class="lead">Cuenta la historia que en 1966 una estudiante de enfermería en California inventó el gel con alcohol. De Lupe no hay fotos: la dibujamos como la imaginamos.</p>
+  <div class="grid2" style="margin-top:20px">
+    <div class="row" style="justify-content:center;gap:28px">
+      <div class="pol"><img src="art/lupe_nurse.png" alt="Dibujo de Lupe como estudiante de enfermería"><span>Lupe Hernández</span></div>
+      <div class="pol"><img src="art/lupe_lab.png" alt="Dibujo de Lupe en el laboratorio"><span>así la imaginamos</span></div>
+    </div>
+    <div class="card">
+      <div class="story" id="story">
+        <div class="step"><img src="art/tv.png" alt="">1966, California: una estudiante ve un problemón.</div>
+        <div class="step"><img src="art/hospital.png" alt="">En los hospitales no siempre había agua y jabón.</div>
+        <div class="step"><img src="art/alc_bottle.png" alt="">¡Idea! Alcohol + gel = manos limpias sin agua.</div>
+        <div class="step"><img src="art/scientist.png" alt="">¡Una estudiante como tú!</div>
+      </div>
+      <button class="btn y" id="storyBtn" style="margin-top:16px">▶ Que Kika me la cuente</button>
+    </div>
+  </div>
+</section>
+
+<section id="reto">
+  <span class="tag">Misión 2</span>
+  <h2 class="comic b">¿Cuál limpia mejor?</h2>
+  <p class="lead">Vota rápido: ¿alcohol al 100% o al 70%?</p>
+  <div class="choice" style="margin-top:18px">
+    <button id="q100" type="button">100%<span class="mark"></span></button>
+    <button id="q70" type="button">70%<span class="mark"></span></button>
+  </div>
+  <div class="fb" id="qfb"></div>
+</section>
+
+<section id="frota">
+  <span class="tag">Misión 3</span>
+  <h2 class="comic g">¡Frota conmigo 20 segundos!</h2>
+  <p class="lead">Ponte de pie, una gotita de gel del tamaño de una moneda… ¡y sigue a Kika!</p>
+  <div class="card rub" style="margin-top:18px">
+    <svg class="ring" viewBox="0 0 220 220" aria-hidden="true"><circle cx="110" cy="110" r="94" stroke="#EEE6F0"/><circle id="ringc" cx="110" cy="110" r="94" stroke="var(--mint)" stroke-linecap="round" transform="rotate(-90 110 110)" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/><text id="secs" x="110" y="130" text-anchor="middle" font-size="64" font-weight="800" fill="var(--ink)">20</text></svg>
+    <div style="text-align:center">
+      <div class="comic stepname" id="stepname">¿Listos?</div>
+      <img class="gloves" id="gloves" src="art/gloves.png" alt="Manos frotando gel">
+      <div class="dots" id="dots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <button class="btn g" id="rubBtn" style="margin-top:16px">▶ ¡Empezar!</button>
+    </div>
+  </div>
+</section>
+
+<section id="cocina">
+  <span class="tag">Misión 4</span>
+  <h2 class="comic p">Cocina el gel</h2>
+  <p class="lead">Toca los ingredientes en el orden correcto para echarlos a la olla.</p>
+  <div class="kitchen" style="margin-top:18px">
+    <div class="ingr" id="ingr">
+      <button data-i="2" type="button"><img src="art/phmeter.png" alt="">Trietanolamina</button>
+      <button data-i="0" type="button"><img src="art/muscle.png" alt="">Etanol 70%</button>
+      <button data-i="3" type="button"><img src="art/gloves.png" alt="">Glicerina</button>
+      <button data-i="1" type="button"><img src="art/molecule.png" alt="">Carbopol</button>
+    </div>
+    <div>
+      <div class="pot" id="pot"><div class="level" id="level"></div><img src="art/cauldron.png" alt="Olla del laboratorio"></div>
+      <div class="recipe" id="recipe"><span>1 · Etanol</span><span>2 · Carbopol</span><span>3 · Trietanolamina</span><span>4 · Glicerina</span></div>
+      <div class="fb" id="kfb"></div>
+    </div>
+  </div>
+  <div class="card row" style="margin-top:24px">
+    <img src="art/labphoto.png" alt="Foto real: carbopol tamizado sobre una balanza de laboratorio" style="width:200px;border:3px solid var(--ink);border-radius:8px">
+    <div style="flex:1 1 280px;min-width:0">
+      <h3 style="margin:0 0 6px;font-size:24px">Así se ve en un laboratorio real</h3>
+      <p style="margin:0;font-weight:600">Se pesa con precisión, el carbopol se tamiza para que no haga grumos, y el gel debe quedar espesito: unos <b>3,000 centipoises</b>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="escudo">
+  <span class="tag">Misión 5</span>
+  <h2 class="comic">¿Escudo o calavera?</h2>
+  <p class="lead">¿La acción te protege o es peligrosa? <span class="score" id="sk-score"></span></p>
+  <div class="card game" style="margin-top:18px">
+    <div class="statement" id="stmt">Toca «Jugar» para empezar</div>
+    <div class="sk">
+      <button type="button" id="bShield" disabled><img src="art/shield.png" alt="">Escudo</button>
+      <button type="button" id="bSkull" disabled><img src="art/skull.png" alt="">Calavera</button>
+    </div>
+    <div class="fb" id="sfb" style="text-align:center"></div>
+    <button class="btn y" id="skStart">▶ Jugar</button>
+  </div>
+</section>
+
+<section id="idea">
+  <span class="tag">Misión 6</span>
+  <h2 class="comic b">Tu turno, inventor@</h2>
+  <p class="lead">Si Lupe inventó el gel siendo estudiante… ¿qué le agregarías tú? Toca ideas o escribe la tuya y pégala en el gel.</p>
+  <div class="grid2" style="margin-top:18px">
+    <div class="card">
+      <div class="chips" id="chips">
+        <button class="btn" type="button">Color que desaparece a los 20 s</button>
+        <button class="btn" type="button">Aroma a fresa</button>
+        <button class="btn" type="button">Envase reciclable</button>
+        <button class="btn" type="button">Con aloe vera</button>
+      </div>
+      <form class="idea" id="ideaForm"><input id="ideaTxt" maxlength="40" placeholder="Nuestra idea…" aria-label="Tu idea"><button class="btn y" type="submit">Pegar</button></form>
+    </div>
+    <div class="card board" id="board"><img class="bottle" src="art/alc_bottle.png" alt="Gel donde se pegan las ideas"></div>
+  </div>
+</section>
+
+<footer>
+  <img src="art/kika.png" alt="" style="width:140px;margin:0 auto 10px">
+  <p>Kika, guion e ilustración de la mascota: <b>Yunuen Calderón</b> · UTM</p>
+  <p style="font-size:13px;opacity:.75">Ilustraciones de apoyo generadas con NotebookLM a partir del material del proyecto. Voz de Kika generada con IA.</p>
+</footer>
+</div>
+
+<img id="kika" src="art/kika.png" alt="">
+<div id="bubble" aria-live="polite"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+/* ---------- audio ---------- */
+let AC=null;
+function ac(){if(!AC)AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC}
+function tone(f,d,type='triangle',g=.15,delay=0){const a=ac(),o=a.createOscillator(),v=a.createGain();o.type=type;o.frequency.value=f;const t=a.currentTime+delay;v.gain.setValueAtTime(0,t);v.gain.linearRampToValueAtTime(g,t+.01);v.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(v).connect(a.destination);o.start(t);o.stop(t+d+.05)}
+const sfx={pop:()=>tone(700,.15,'sine',.2),ding:()=>{tone(1047,.5,'triangle',.18);tone(1568,.6,'triangle',.14,.09)},buzz:()=>{tone(110,.4,'square',.07);tone(116,.4,'square',.06)},
+ tick:()=>tone(1800,.05,'square',.05),fan:()=>[523,659,784,1047].forEach((f,i)=>tone(f,i==3?.9:.25,'triangle',.16,i*.12)),splash:()=>tone(300,.3,'sine',.12)};
+let cur=null;const kika=$('#kika'),bub=$('#bubble');
+function say(id,text){return new Promise(res=>{if(cur){cur.pause();cur.onended=null}
+ const a=new Audio(`audio/${id}.mp3`);cur=a;kika.classList.add('talk');if(text){bub.textContent=text;bub.classList.add('on')}
+ const end=()=>{kika.classList.remove('talk');bub.classList.remove('on');res()};a.onended=end;a.onerror=end;a.play().catch(end)})}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* ---------- 1 Lupe ---------- */
+$('#storyBtn').onclick=async e=>{const b=e.currentTarget;b.disabled=true;const st=[...document.querySelectorAll('#story .step')];st.forEach(s=>s.classList.remove('on'));
+ const seq=[['l2',0,'Cuenta la historia que en 1966, en California, Lupe Hernández vio un problemón.'],['l2b',0,'De Lupe no hay fotos… ¡Hola, Lupe!'],['l3',1,'En los hospitales no siempre había agua y jabón…'],['l4',2,'¡Mezclar alcohol con un gel!'],['l5',3,'¡Una estudiante, como ustedes!']];
+ for(const [id,i,t] of seq){st[i].classList.add('on');sfx.pop();await say(id,t)}b.disabled=false;b.textContent='↺ Otra vez'};
+
+/* ---------- 2 Reto ---------- */
+let qDone=false;
+$('#q100').onclick=()=>answerQ(false);$('#q70').onclick=()=>answerQ(true);
+async function answerQ(ok){if(qDone)return;qDone=true;$('#q70 .mark').textContent='✔';$('#q100 .mark').textContent='✘';
+ if(ok){sfx.ding();$('#qfb').textContent='¡Correcto! Gana el 70%.'}else{sfx.buzz();$('#qfb').textContent='¡Casi! Gana el 70%.'}
+ await say('q2','El agua le ayuda a entrar al microbio; el alcohol puro se evapora antes de terminar su trabajo.');
+ setTimeout(()=>{qDone=false;$('#q70 .mark').textContent='';$('#q100 .mark').textContent='';$('#qfb').textContent=''},4000)}
+
+/* ---------- 3 Frota ---------- */
+const steps=[['r1','¡PALMAS!'],['r2s','¡DORSO!'],['r3s','¡ENTRE LOS DEDOS!'],['r4s','¡PULGARES!'],['r5s','¡UÑAS!'],['r6s','¡MUÑECAS!']];
+$('#rubBtn').onclick=async e=>{const b=e.currentTarget;b.disabled=true;const dots=[...document.querySelectorAll('#dots i')];dots.forEach(d=>d.classList.remove('on'));
+ await say('r0','¡Ahora todos de pie! Gotita del tamaño de una moneda… ¿listos?');
+ const g=$('#gloves');g.classList.add('go');const t0=performance.now();let si=-1;
+ await new Promise(res=>{const tick=()=>{const el=(performance.now()-t0)/1000,left=Math.max(0,20-el);$('#secs').textContent=Math.ceil(left);$('#ringc').style.strokeDashoffset=String(100-left/20*100);
+   const k=Math.min(5,Math.floor(el/3.34));if(k!==si&&el<20){si=k;$('#stepname').textContent=steps[k][1];dots[k].classList.add('on');say(steps[k][0]);sfx.pop()}
+   if(left>0)requestAnimationFrame(tick);else res()};tick()});
+ g.classList.remove('go');$('#stepname').textContent='¡SECAS!';sfx.fan();await say('r2','¡Adiós al 99.9% de muchos microbios! Si hay tierra o grasa… ¡agua y jabón!');b.disabled=false;b.textContent='↺ Otra vez'};
+
+/* ---------- 4 Cocina ---------- */
+let kStep=0;const lines=['g1','g2','g3','g4'];const caps=['¡Etanol 70%, el musculoso!','Carbopol: cadenas larguísimas.','Trietanolamina: ¡es magia! Bueno… química.','Glicerina: ¡todo a la olla… y listo!'];
+document.querySelectorAll('#ingr button').forEach(b=>b.onclick=async()=>{if(b.classList.contains('used'))return;const i=+b.dataset.i;
+ if(i!==kStep){sfx.buzz();$('#kfb').textContent='¡Ups! Ese no va todavía. Mira la receta.';b.animate([{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'none'}],{duration:300});return}
+ b.classList.add('used');sfx.splash();$('#recipe').children[i].classList.add('ok');kStep++;$('#level').style.height=(kStep*13)+'%';const p=$('#pot');p.classList.remove('jig');void p.offsetWidth;p.classList.add('jig');
+ $('#kfb').textContent=kStep<4?'¡Bien! Sigue…':'¡GEL LISTO! 🎉'.replace(' 🎉','');say(lines[i],caps[i]);
+ if(kStep===4){sfx.fan();setTimeout(()=>{kStep=0;document.querySelectorAll('#ingr button').forEach(x=>x.classList.remove('used'));[...$('#recipe').children].forEach(x=>x.classList.remove('ok'));$('#level').style.height='0';$('#kfb').textContent=''},9000)}});
+
+/* ---------- 5 Escudo ---------- */
+const cards=[['s1','s1a','Frotar el gel hasta que se seque',1,'Así el alcohol alcanza a actuar.'],['s2','s2a','Tomarte el gel',0,'Es tóxico si se traga.'],['s3','s3a','Ponerte gel y acercarte al fuego',0,'El alcohol se prende: espera a que seque.'],['s4','s4a','Guardarlo lejos de niños pequeños',1,'Evita accidentes.']];
+let ci=0,ok=0,lock=true;
+$('#skStart').onclick=async e=>{e.currentTarget.hidden=true;ci=0;ok=0;await say('s0','¿Escudo o calavera? Si protege: ¡escudo! Si es peligroso: ¡calavera!');nextCard()};
+function nextCard(){if(ci>=cards.length){$('#stmt').textContent=`¡${ok} de 4! Detectives certificados`;sfx.fan();$('#skStart').hidden=false;$('#skStart').textContent='↺ Jugar otra vez';$('#bShield').disabled=$('#bSkull').disabled=true;return}
+ const c=cards[ci];$('#stmt').textContent=c[2];$('#sfb').textContent='';$('#sk-score').textContent=`Aciertos: ${ok}`;['#bShield','#bSkull'].forEach(s=>{$(s).classList.remove('ok','bad');$(s).disabled=false});lock=false;say(c[0],c[2]+'…')}
+async function pick(good){if(lock)return;lock=true;const c=cards[ci];const right=!!c[3]===good;if(right){ok++;sfx.ding()}else sfx.buzz();
+ $(c[3]?'#bShield':'#bSkull').classList.add('ok');if(!right)$(good?'#bShield':'#bSkull').classList.add('bad');$('#sfb').textContent=(right?'¡Bien! ':'Ups. ')+c[4];$('#sk-score').textContent=`Aciertos: ${ok}`;
+ await say(c[1]);await wait(1200);ci++;nextCard()}
+$('#bShield').onclick=()=>pick(true);$('#bSkull').onclick=()=>pick(false);
+
+/* ---------- 6 Idea ---------- */
+let ns=0;const spots=[[8,12],[60,8],[4,62],[62,58],[30,82],[66,32],[2,36],[34,4]];
+function stick(txt){const s=document.createElement('div');s.className='sticker';s.textContent=txt;const p=spots[ns%spots.length];ns++;s.style.left=p[0]+'%';s.style.top=p[1]+'%';s.style.transform=`rotate(${(Math.random()*14-7).toFixed(1)}deg)`;$('#board').appendChild(s);sfx.pop()}
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{stick(b.textContent);b.disabled=true});
+$('#ideaForm').onsubmit=e=>{e.preventDefault();const v=$('#ideaTxt').value.trim();if(v){stick(v);$('#ideaTxt').value='';if(ns===1||ns%3===0)say('f1')}};
+
+/* greet */
+document.addEventListener('click',function once(){document.removeEventListener('click',once,true)},true);
+</script>
+</body>
+</html>
