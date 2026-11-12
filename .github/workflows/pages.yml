@@ -1,0 +1,41 @@
+name: Publicar pagina de Kika
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.dep.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Traer archivos de la pagina
+        run: |
+          if [ ! -f index.html ]; then
+            for id in 1mHLQ20_dJIjGtrcvJlApbASn-pSYi1hB 1zjrYqHurx7CYm1IKag9zlqi-rvs5hvHa 1kHqYNu4ZR975Te9hQ5EL0DMAQow2JMaS 1v8t3B7yzvaUy1SvnA29ORawqbbs5WHTe 1ZZaKrrBvQJAPe_OmG9TKqiGYtE0sVEWH 1rtRkavvizHyJMYRnwVZRRdV-bU-MZRb_; do
+              curl -sSL "https://drive.usercontent.google.com/download?id=$id&export=download&confirm=t" >> /tmp/b.tar
+            done
+            echo "5017f04ed3e1839803ecc8cd96ae02a386ac4fcf00b2a1fcafef4e4d5c3cd6bf  /tmp/b.tar" | sha256sum -c
+            mkdir -p /tmp/b && tar -xf /tmp/b.tar -C /tmp/b
+            unzip -o /tmp/b/kika-assets.zip -d .
+            mkdir -p video && cp /tmp/b/kika-gel.mp4 video/kika-gel.mp4
+            touch .nojekyll
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -A && git commit -m "Agregar pagina de Kika" && git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: dep
+        uses: actions/deploy-pages@v4
